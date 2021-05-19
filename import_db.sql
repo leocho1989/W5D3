@@ -24,15 +24,6 @@ CREATE TABLE question_follows (
   FOREIGN KEY (user_id) REFERENCES user(id)
 ); 
 
-/*
-  id  title     user_id
-  1    q1        1
-  2    q1        2
-  3    q2        1
-  4    q3        1   #questions should at least have 1 follower(the asker)
-  5   NULL       3   #didn't ask or follow any questions
-*/
-
 CREATE TABLE replies (
   id INTEGER PRIMARY KEY,
   subject_question INTEGER NOT NULL,
@@ -50,6 +41,8 @@ CREATE TABLE question_likes (
   FOREIGN KEY (question_id) REFERENCES questions(id),
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+-- INSERTS
 
 INSERT INTO
  users (fname,lname)
@@ -70,3 +63,12 @@ VALUES
   (1, NULL, 2, 'questions 1, answered by user 2'),
   (2, NULL, 1, 'questions 2, answered by user 1'),
   (2, 2, 2, 'questions 2, answered by user 1, replied to by user 2');
+
+INSERT INTO
+  question_follows (question_id, user_id)
+VALUES
+  (1, 1),
+  (1, 2),
+  (2, 2),
+  (2, 1),
+  (3, 2);
