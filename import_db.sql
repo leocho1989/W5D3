@@ -35,13 +35,13 @@ CREATE TABLE question_follows (
 
 CREATE TABLE replies (
   id INTEGER PRIMARY KEY,
-  subject_questions INTEGER NOT NULL,
+  subject_question INTEGER NOT NULL,
   parent TEXT,  --top level replies don't need parents
   user_id INTEGER NOT NULL,
   body TEXT NOT NULL,
 
   FOREIGN KEY (parent) REFERENCES replies(id),
-  FOREIGN KEY (subject_questions) REFERENCES questions(id)
+  FOREIGN KEY (subject_question) REFERENCES questions(id)
 );
 
 CREATE TABLE question_likes (
@@ -53,15 +53,20 @@ CREATE TABLE question_likes (
 
 INSERT INTO
  users (fname,lname)
- VALUES 
+VALUES 
  ('Leo','Cao'),
  ('Miguel','Dela Cruz');
 
- INSERT INTO
+INSERT INTO
  questions (title, body, associated_author)
- VALUES
+VALUES
  ('question no.1', '1abcdefghijk', 1),
  ('question no.2', '2efgdcvgggbb', 2),
  ('question no.3', '3uujufvbghjh', 2);
 
-
+INSERT INTO
+  replies (subject_question, parent, user_id, body)
+VALUES
+  (1, NULL, 2, 'questions 1, answered by user 2'),
+  (2, NULL, 1, 'questions 2, answered by user 1'),
+  (2, 2, 2, 'questions 2, answered by user 1, replied to by user 2');
