@@ -36,7 +36,7 @@ CREATE TABLE question_follows (
 CREATE TABLE replies (
   id INTEGER PRIMARY KEY,
   subject_question INTEGER NOT NULL,
-  parent TEXT,  --top level replies don't need parents
+  parent INTEGER,  --top level replies don't need parents
   user_id INTEGER NOT NULL,
   body TEXT NOT NULL,
 

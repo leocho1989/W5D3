@@ -20,7 +20,7 @@ class Question
         id = ?
     SQL
 
-    return nil if question.length < 0 # might be <= 0
+    return nil if question.length <= 0 # might be <= 0
     Question.new(question.first)
   end
 
@@ -34,7 +34,7 @@ class Question
         associated_author = ?
     SQL
 
-    return nil if question.length < 0 # might be <= 0
+    return nil if question.length <= 0 # might be <= 0
     # Question.new(question.first)
     question.map {|ob| Question.new(ob)}
   end
@@ -57,7 +57,7 @@ class Question
         id = ?
     SQL
 
-    return nil if user.length < 0 # might be <= 0
+    return nil if user.length <= 0 # might be <= 0
     User.new(user.first)
   end
 

@@ -20,7 +20,7 @@ class User
       id = ?
   SQL
 
-  return nil if user.length < 0 # might be <= 0
+  return nil if user.length <= 0 # might be <= 0
   User.new(user.first)
   end
 
@@ -34,7 +34,7 @@ class User
       fname = ? AND lname = ?
   SQL
 
-    return nil if user.length < 0 # might be <= 0
+    return nil if user.length <= 0 # might be <= 0
     User.new(user.first)
   end
 
